@@ -6,6 +6,7 @@
 | ------- | ------------------ |
 
 ## Reporting a Vulnerability
-Navigate to the "Security" tab near the top of the repository. 
-In the lefthand side of the screen, click "Advisories".
-Click "New draft advisory".
+Navigate to the "Issues" tab of the repository.
+Choose the "Custom Issue Template".
+The title should follow this format: "[SECURITY] <insert_title_here>".
+In the body of the issue, describe the security flaw. 
