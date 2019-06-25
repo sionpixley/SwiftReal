@@ -4,7 +4,7 @@
 
 | Version | Supported          |
 | ------- | ------------------ |
-|0.x      |:white_check_mark:  |
+| 0.x     | :white_check_mark: |
 
 ## Reporting a Vulnerability
 Navigate to the "Issues" tab of the repository.
