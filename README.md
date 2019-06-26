@@ -12,8 +12,16 @@ That command will compile all the Swift files under the executable "real". Run t
 ## About the Files
 The files are fairly simple.
 
-Long.swift holds the implementation for the Long datatype (class).
+Real is a directory that holds all the source files.
 
-Real.swift holds the implementation for the Real datatype (class).
+Long.swift holds the implementation for the Long datatype.
 
-main.swift holds the implementation for the unit tests. This file also acts as the driver for all the files. So if you want to test any code, you will have to do so in this file.
+Real.swift holds the implementation for the Real datatype.
+
+main.swift holds the implementation for the unit tests. This file also acts as the driver for all the files. So if you want to test any code, you will have to do so in this file. Or if you want to incorporate this library with your own code, remove the main.swift file and make your own.
+
+CODE_OF_CONDUCT.md explains the code of conduct of this repo (please read).
+
+SECURITY.md explains the process of reporting a security flaw related to this repo. It also holds info for which versions are still receiving updates (please read).
+
+LICENSE is the standard MIT License (please read).
