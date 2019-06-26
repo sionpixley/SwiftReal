@@ -6,7 +6,7 @@ To compile this code (on macOS or Linux), make sure to have the Swift compiler i
 
 On Fedora, all you have to do is run this command to get the compiler: "sudo dnf install swift-lang".
 
-After you have the compiler installed, navigate to the directory and run this command: "swiftc -O *.swift -o real"
+After you have the compiler installed, navigate into the "Real" directory and run this command: "swiftc -O *.swift -o real"
 That command will compile all the Swift files under the executable "real". Run the executable with this command: "./real".
 
 ## About the Files
