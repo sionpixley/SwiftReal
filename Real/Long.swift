@@ -6,11 +6,11 @@ public extension String
     {
         get
         {
-            return String(self[self.index(self.startIndex, offsetBy: val)])
+            return String(self[index(startIndex, offsetBy: val)])
         }
         set
         {
-            self = self[self.startIndex..<self.index(self.startIndex, offsetBy: val)] + newValue + self[self.index(self.startIndex, offsetBy: val+1)..<self.endIndex]
+            self = self[startIndex..<index(startIndex, offsetBy: val)] + newValue + self[index(startIndex, offsetBy: val+1)..<endIndex]
         }
     }
 }
