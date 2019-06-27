@@ -19,25 +19,20 @@ public extension Array where Element == Int
 {
     mutating func addLeadingZeros(toWidth: Int)
     {
-        let original: [Int] = self
-        self = [Int]()
-        let size: Int = original.count
-        let difference: Int = toWidth - size
+        let difference: Int = toWidth - count
+        reverse()
         for _ in 0..<difference
         {
-            self.append(0)
+            append(0)
         }
-        for i in 0..<size
-        {
-            self.append(original[i])
-        }
+        reverse()
     }
     
     mutating func removeLeadingZeros()
     {
-        while (self[0] == 0) && (self.count > 1)
+        while (self[0] == 0) && (count > 1)
         {
-            self.removeFirst()
+            removeFirst()
         }
     }
 }
