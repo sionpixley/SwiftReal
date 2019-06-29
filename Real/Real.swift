@@ -26,7 +26,7 @@ public class Real
         let size: Int = str.count
         for i in _decimalPointIndex+1..<size
         {
-            _num.append(Int(str[i])!)
+            _num.append(Int32(str[i])!)
         }
     }
     
@@ -46,11 +46,11 @@ public class Real
         _num = Long(str)
         for i in _decimalPointIndex+1..<size
         {
-            _num.append(Int(val[i])!)
+            _num.append(Int32(val[i])!)
         }
     }
     
-    public subscript(_ val: Int) -> Int
+    public subscript(_ val: Int) -> Int32
     {
         return _num[val]    
     }
