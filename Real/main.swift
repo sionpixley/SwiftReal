@@ -889,7 +889,7 @@ func LongPowerWithLargeNumber_LongInt_Long() -> Bool
 {
     // arrange
     let num1 = Long("72189475")
-    let num2: Int = 5
+    let num2: UInt = 5
     
     // act
     let actual = Long().pow(base: num1, exponent: num2)
@@ -902,7 +902,7 @@ func LongPowerWithSmallNumber_LongInt_Long() -> Bool
 {
     // arrange
     let num1 = Long(12)
-    let num2: Int = 4
+    let num2: UInt = 4
     
     // act
     let actual = Long().pow(base: num1, exponent: num2)
@@ -915,7 +915,7 @@ func LongPowerWithNegativeNumber_LongInt_Long() -> Bool
 {
     // arrange
     let num1 = Long(-32)
-    let num2: Int = 7
+    let num2: UInt = 7
     
     // act
     let actual = Long().pow(base: num1, exponent: num2)
@@ -928,7 +928,7 @@ func LongPowerWithZeroExponent_LongInt_Long() -> Bool
 {
     // arrange
     let num1 = Long("72934759324")
-    let num2: Int = 0
+    let num2: UInt = 0
     
     // act
     let actual = Long().pow(base: num1, exponent: num2)

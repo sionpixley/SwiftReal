@@ -15,7 +15,7 @@ public extension String
     }
 }
 
-public extension Array where Element == Int
+public extension Array where Element == Int32
 {
     mutating func addLeadingZeros(toWidth: Int)
     {
@@ -39,19 +39,19 @@ public extension Array where Element == Int
 
 public class Long
 {
-    private var _integer: [Int]
+    private var _integer: [Int32]
     private var _isNegative: Bool
     
     public init()
     {
-        _integer = [Int]()
+        _integer = [Int32]()
         _integer.append(0)
         _isNegative = false
     }
     
     public init(_ val: Int)
     {
-        _integer = [Int]()
+        _integer = [Int32]()
         let str = String(val)
         let size: Int = str.count
         
@@ -60,7 +60,7 @@ public class Long
             _isNegative = true
             for i in 1..<size
             {
-                _integer.append(Int(str[i])!)
+                _integer.append(Int32(str[i])!)
             }
         }
         else
@@ -68,14 +68,14 @@ public class Long
             _isNegative = false
             for i in 0..<size
             {
-                _integer.append(Int(str[i])!)
+                _integer.append(Int32(str[i])!)
             }
         }
     }
     
     public init(_ val: Double)
     {
-        _integer = [Int]()
+        _integer = [Int32]()
         let str = String(Int(val))
         let size: Int = str.count
         
@@ -84,7 +84,7 @@ public class Long
             _isNegative = true
             for i in 1..<size
             {
-                _integer.append(Int(str[i])!)
+                _integer.append(Int32(str[i])!)
             }
         }
         else
@@ -92,14 +92,14 @@ public class Long
             _isNegative = false
             for i in 0..<size
             {
-                _integer.append(Int(str[i])!)
+                _integer.append(Int32(str[i])!)
             }
         }
     }
     
     public init(_ val: String)
     {
-        _integer = [Int]()
+        _integer = [Int32]()
         let size: Int = val.count
         
         if val[0] == "-"
@@ -107,7 +107,7 @@ public class Long
             _isNegative = true
             for i in 1..<size
             {
-                _integer.append(Int(val[i])!)
+                _integer.append(Int32(val[i])!)
             }
         }
         else
@@ -115,12 +115,12 @@ public class Long
             _isNegative = false
             for i in 0..<size
             {
-                _integer.append(Int(val[i])!)
+                _integer.append(Int32(val[i])!)
             }
         }
     }
     
-    public func append(_ val: Int)
+    public func append(_ val: Int32)
     {
         _integer.append(val)
     }
@@ -388,9 +388,9 @@ public class Long
                 
                 for j in stride(from: lhs.count-1, through: 0, by: -1)
                 {
-                    var current: Int = 0
-                    var a: Int = lhs[j]
-                    var b: Int = rhs[i]
+                    var current: Int32 = 0
+                    var a: Int32 = lhs[j]
+                    var b: Int32 = rhs[i]
                     while b != 0
                     {
                         if b % 2 != 0
@@ -421,9 +421,9 @@ public class Long
                 
                 for j in stride(from: rhs.count-1, through: 0, by: -1)
                 {
-                    var current: Int = 0
-                    var a: Int = rhs[j]
-                    var b: Int = lhs[i]
+                    var current: Int32 = 0
+                    var a: Int32 = rhs[j]
+                    var b: Int32 = lhs[i]
                     while b != 0
                     {
                         if b % 2 != 0
@@ -454,9 +454,9 @@ public class Long
                 
                 for j in stride(from: lhs.count-1, through: 0, by: -1)
                 {
-                    var current: Int = 0
-                    var a: Int = lhs[j]
-                    var b: Int = rhs[i]
+                    var current: Int32 = 0
+                    var a: Int32 = lhs[j]
+                    var b: Int32 = rhs[i]
                     while b != 0
                     {
                         if b % 2 != 0
@@ -696,7 +696,7 @@ public class Long
         return lhs.toString == rhs.toString
     }
     
-    public subscript(_ val: Int) -> Int
+    public subscript(_ val: Int) -> Int32
     {
         get
         {
@@ -734,7 +734,7 @@ public class Long
         }
     }
     
-    public func pow(base: Long, exponent: Int) -> Long
+    public func pow(base: Long, exponent: UInt) -> Long
     {
         if exponent == 0
         {
