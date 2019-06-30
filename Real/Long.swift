@@ -1,25 +1,11 @@
 import Foundation
 
-public extension String
-{
-    subscript(_ val: Int) -> String
-    {
-        get
-        {
-            return String(self[index(startIndex, offsetBy: val)])
-        }
-        set
-        {
-            self = self[startIndex..<index(startIndex, offsetBy: val)] + newValue + self[index(startIndex, offsetBy: val+1)..<endIndex]
-        }
-    }
-}
-
 public extension Array where Element == Int32
 {
     mutating func addLeadingZeros(toWidth: Int)
     {
         let difference: Int = toWidth - count
+        
         reverse()
         for _ in 0..<difference
         {
@@ -53,22 +39,25 @@ public class Long
     {
         _integer = [Int32]()
         let str = String(val)
-        let size: Int = str.count
         
-        if str[0] == "-"
+        if str[str.startIndex] == "-"
         {
             _isNegative = true
-            for i in 1..<size
+            var i = str.index(str.startIndex, offsetBy: 1)
+            while i < str.endIndex
             {
-                _integer.append(Int32(str[i])!)
+                _integer.append(Int32(String(str[i]))!)
+                i = str.index(after: i)
             }
         }
         else
         {
             _isNegative = false
-            for i in 0..<size
+            var i = str.startIndex
+            while i < str.endIndex
             {
-                _integer.append(Int32(str[i])!)
+                _integer.append(Int32(String(str[i]))!)
+                i = str.index(after: i)
             }
         }
     }
@@ -77,22 +66,25 @@ public class Long
     {
         _integer = [Int32]()
         let str = String(Int(val))
-        let size: Int = str.count
         
-        if str[0] == "-"
+        if str[str.startIndex] == "-"
         {
             _isNegative = true
-            for i in 1..<size
+            var i = str.startIndex
+            while i < str.endIndex
             {
-                _integer.append(Int32(str[i])!)
+                _integer.append(Int32(String(str[i]))!)
+                i = str.index(after: i)
             }
         }
         else
         {
             _isNegative = false
-            for i in 0..<size
+            var i = str.startIndex
+            while i < str.endIndex
             {
-                _integer.append(Int32(str[i])!)
+                _integer.append(Int32(String(str[i]))!)
+                i = str.index(after: i)
             }
         }
     }
@@ -100,23 +92,52 @@ public class Long
     public init(_ val: String)
     {
         _integer = [Int32]()
-        let size: Int = val.count
         
-        if val[0] == "-"
+        _isNegative = false
+        var i = val.startIndex
+        while i < val.endIndex
         {
-            _isNegative = true
-            for i in 1..<size
+            switch val[i]
             {
-                _integer.append(Int32(val[i])!)
+            case "-":
+                if i == val.startIndex
+                {
+                    _isNegative = true
+                }
+                else
+                {
+                    print("invalid character")
+                    exit(-1)
+                }
+            case ".":
+                break
+            case ",":
+                continue
+            case "0":
+                _integer.append(Int32(String(val[i]))!)
+            case "1":
+                _integer.append(Int32(String(val[i]))!)
+            case "2":
+                _integer.append(Int32(String(val[i]))!)
+            case "3":
+                _integer.append(Int32(String(val[i]))!)
+            case "4":
+                _integer.append(Int32(String(val[i]))!)
+            case "5":
+                _integer.append(Int32(String(val[i]))!)
+            case "6":
+                _integer.append(Int32(String(val[i]))!)
+            case "7":
+                _integer.append(Int32(String(val[i]))!)
+            case "8":
+                _integer.append(Int32(String(val[i]))!)
+            case "9":
+                _integer.append(Int32(String(val[i]))!)
+            default:
+                print("invalid character")
+                exit(-1)
             }
-        }
-        else
-        {
-            _isNegative = false
-            for i in 0..<size
-            {
-                _integer.append(Int32(val[i])!)
-            }
+            i = val.index(after: i)
         }
     }
     
@@ -805,14 +826,13 @@ public class Long
     public var toString: String
     {
         var ret = String()
-        let size: Int = _integer.count
         
         if _isNegative
         {
             ret += "-"
         }
         
-        for i in 0..<size
+        for i in 0..<_integer.count
         {
             ret += String(_integer[i])
         }

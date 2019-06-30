@@ -1,3 +1,5 @@
+import Foundation
+
 public class Real
 {
     private var _num: Long
@@ -23,30 +25,56 @@ public class Real
         _num = Long(val)
         _decimalPointIndex = _num.count
         let str = String(val)
-        let size: Int = str.count
-        for i in _decimalPointIndex+1..<size
+        var i = str.index(str.startIndex, offsetBy: _decimalPointIndex+1)
+        while i < str.endIndex
         {
-            _num.append(Int32(str[i])!)
+            _num.append(Int32(String(str[i]))!)
+            i = str.index(after: i)
         }
     }
     
     public init(_ val: String)
     {
-        var str = String()
-        let size: Int = val.count
-        for i in 0..<size
+        _num = Long(val)
+        _decimalPointIndex = _num.count
+        var i = val.index(val.startIndex, offsetBy: _decimalPointIndex+1)
+        while i < val.endIndex
         {
-            if val[i] == "."
+            switch val[i]
             {
-                break
+            case "-":
+                print("invalid character")
+                exit(-1)
+            case ".":
+                print("invalid character")
+                exit(-1)
+            case ",":
+                continue
+            case "0":
+                _num.append(Int32(String(val[i]))!)
+            case "1":
+                _num.append(Int32(String(val[i]))!)
+            case "2":
+                _num.append(Int32(String(val[i]))!)
+            case "3":
+                _num.append(Int32(String(val[i]))!)
+            case "4":
+                _num.append(Int32(String(val[i]))!)
+            case "5":
+                _num.append(Int32(String(val[i]))!)
+            case "6":
+                _num.append(Int32(String(val[i]))!)
+            case "7":
+                _num.append(Int32(String(val[i]))!)
+            case "8":
+                _num.append(Int32(String(val[i]))!)
+            case "9":
+                _num.append(Int32(String(val[i]))!)
+            default:
+                print("invalid character")
+                exit(-1)
             }
-            str += val[i]
-        }
-        _decimalPointIndex = str.count
-        _num = Long(str)
-        for i in _decimalPointIndex+1..<size
-        {
-            _num.append(Int32(val[i])!)
+            i = val.index(after: i)
         }
     }
     
@@ -58,8 +86,7 @@ public class Real
     public var toString: String
     {
         var ret = String()
-        let size: Int = _num.count
-        for i in 0..<size
+        for i in 0..<_num.count
         {
             switch i
             {
