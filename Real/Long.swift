@@ -27,6 +27,31 @@ public class Long
 {
     private var _integer: [Int32]
     private var _isNegative: Bool
+    private let _factorialMap: [String : String] =
+        ["0" : "1", "1" : "1", "2" : "2", "3" : "6", "4" : "24", "5" : "120", "6" : "720",
+         "7" : "5040", "8" : "40320", "9" : "362880", "10" : "3628800", "11" : "39916800",
+         "12" : "479001600", "13" : "6227020800", "14" : "87178291200", "15" : "1307674368000",
+         "16" : "20922789888000", "17" : "355687428096000", "18" : "6402373705728000",
+         "19" : "121645100408832000", "20" : "2432902008176640000", "21" : "51090942171709440000",
+         "22" : "1124000727777607680000", "23" : "25852016738884976640000",
+         "24" : "620448401733239439360000", "25" : "15511210043330985984000000",
+         "26" : "403291461126605635584000000", "27" : "10888869450418352160768000000",
+         "28" : "304888344611713860501504000000", "29" : "8841761993739701954543616000000",
+         "30" : "265252859812191058636308480000000", "31" : "8222838654177922817725562880000000",
+         "32" : "263130836933693530167218012160000000",
+         "33" : "8683317618811886495518194401280000000",
+         "34" : "295232799039604140847618609643520000000",
+         "35" : "10333147966386144929666651337523200000000",
+         "36" : "371993326789901217467999448150835200000000",
+         "37" : "13763753091226345046315979581580902400000000",
+         "38" : "523022617466601111760007224100074291200000000",
+         "39" : "20397882081197443358640281739902897356800000000",
+         "40" : "815915283247897734345611269596115894272000000000",
+         "41" : "33452526613163807108170062053440751665152000000000",
+         "42" : "1405006117752879898543142606244511569936384000000000",
+         "43" : "60415263063373835637355132068513997507264512000000000",
+         "44" : "2658271574788448768043625811014615890319638528000000000",
+         "45" : "119622220865480194561963161495657715064383733760000000000"]
     
     public init()
     {
@@ -35,72 +60,19 @@ public class Long
         _isNegative = false
     }
     
-    public init(_ val: Int)
+    public init(_ val: Any)
     {
-        _integer = [Int32]()
-        let str = String(val)
-        
-        if str[str.startIndex] == "-"
-        {
-            _isNegative = true
-            var i = str.index(str.startIndex, offsetBy: 1)
-            while i < str.endIndex
-            {
-                _integer.append(Int32(String(str[i]))!)
-                i = str.index(after: i)
-            }
-        }
-        else
-        {
-            _isNegative = false
-            var i = str.startIndex
-            while i < str.endIndex
-            {
-                _integer.append(Int32(String(str[i]))!)
-                i = str.index(after: i)
-            }
-        }
-    }
-    
-    public init(_ val: Double)
-    {
-        _integer = [Int32]()
-        let str = String(Int(val))
-        
-        if str[str.startIndex] == "-"
-        {
-            _isNegative = true
-            var i = str.startIndex
-            while i < str.endIndex
-            {
-                _integer.append(Int32(String(str[i]))!)
-                i = str.index(after: i)
-            }
-        }
-        else
-        {
-            _isNegative = false
-            var i = str.startIndex
-            while i < str.endIndex
-            {
-                _integer.append(Int32(String(str[i]))!)
-                i = str.index(after: i)
-            }
-        }
-    }
-    
-    public init(_ val: String)
-    {
+        let input = String(describing: val)
         _integer = [Int32]()
         
         _isNegative = false
-        var i = val.startIndex
-        while i < val.endIndex
+        var i = input.startIndex
+        while i < input.endIndex
         {
-            switch val[i]
+            switch input[i]
             {
             case "-":
-                if i == val.startIndex
+                if i == input.startIndex
                 {
                     _isNegative = true
                 }
@@ -110,34 +82,34 @@ public class Long
                     exit(-1)
                 }
             case ".":
-                break
+                return
             case ",":
                 continue
             case "0":
-                _integer.append(Int32(String(val[i]))!)
+                _integer.append(Int32(String(input[i]))!)
             case "1":
-                _integer.append(Int32(String(val[i]))!)
+                _integer.append(Int32(String(input[i]))!)
             case "2":
-                _integer.append(Int32(String(val[i]))!)
+                _integer.append(Int32(String(input[i]))!)
             case "3":
-                _integer.append(Int32(String(val[i]))!)
+                _integer.append(Int32(String(input[i]))!)
             case "4":
-                _integer.append(Int32(String(val[i]))!)
+                _integer.append(Int32(String(input[i]))!)
             case "5":
-                _integer.append(Int32(String(val[i]))!)
+                _integer.append(Int32(String(input[i]))!)
             case "6":
-                _integer.append(Int32(String(val[i]))!)
+                _integer.append(Int32(String(input[i]))!)
             case "7":
-                _integer.append(Int32(String(val[i]))!)
+                _integer.append(Int32(String(input[i]))!)
             case "8":
-                _integer.append(Int32(String(val[i]))!)
+                _integer.append(Int32(String(input[i]))!)
             case "9":
-                _integer.append(Int32(String(val[i]))!)
+                _integer.append(Int32(String(input[i]))!)
             default:
                 print("invalid character")
                 exit(-1)
             }
-            i = val.index(after: i)
+            i = input.index(after: i)
         }
     }
     
@@ -774,19 +746,27 @@ public class Long
     
     public func factorial(of val: Long) -> Long
     {
-        if val == Long()
+        if val._isNegative
         {
-            return Long(1)
+            print("invalid factorial")
+            exit(-1)
+        }
+        
+        if val <= Long(45)
+        {
+            return Long(_factorialMap[val.toString]!)
         }
         else
         {
             var result = Long(val.toString)
             var current = Long(result.toString) - Long(1)
-            while current > Long()
+            while current > Long(45)
             {
                 result *= current
                 current -= Long(1)
             }
+            current = Long(_factorialMap[current.toString]!)
+            result *= current
             return result
         }
     }
