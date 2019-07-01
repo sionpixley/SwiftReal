@@ -60,7 +60,7 @@ public class Long
         _isNegative = false
     }
     
-    public init(_ val: Int)
+    /*public init(_ val: Int)
     {
         _integer = [Int32]()
         let str = String(val)
@@ -135,7 +135,7 @@ public class Long
                     exit(-1)
                 }
             case ".":
-                break
+                return
             case ",":
                 continue
             case "0":
@@ -163,6 +163,59 @@ public class Long
                 exit(-1)
             }
             i = val.index(after: i)
+        }
+    }*/
+    
+    public init(_ val: Any)
+    {
+        let input = String(describing: val)
+        _integer = [Int32]()
+        
+        _isNegative = false
+        var i = input.startIndex
+        while i < input.endIndex
+        {
+            switch input[i]
+            {
+            case "-":
+                if i == input.startIndex
+                {
+                    _isNegative = true
+                }
+                else
+                {
+                    print("invalid character")
+                    exit(-1)
+                }
+            case ".":
+                return
+            case ",":
+                continue
+            case "0":
+                _integer.append(Int32(String(input[i]))!)
+            case "1":
+                _integer.append(Int32(String(input[i]))!)
+            case "2":
+                _integer.append(Int32(String(input[i]))!)
+            case "3":
+                _integer.append(Int32(String(input[i]))!)
+            case "4":
+                _integer.append(Int32(String(input[i]))!)
+            case "5":
+                _integer.append(Int32(String(input[i]))!)
+            case "6":
+                _integer.append(Int32(String(input[i]))!)
+            case "7":
+                _integer.append(Int32(String(input[i]))!)
+            case "8":
+                _integer.append(Int32(String(input[i]))!)
+            case "9":
+                _integer.append(Int32(String(input[i]))!)
+            default:
+                print("invalid character")
+                exit(-1)
+            }
+            i = input.index(after: i)
         }
     }
     
