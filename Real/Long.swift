@@ -60,72 +60,19 @@ public class Long
         _isNegative = false
     }
     
-    public init(_ val: Int)
+    public init(_ val: Any)
     {
-        _integer = [Int32]()
-        let str = String(val)
-        
-        if str[str.startIndex] == "-"
-        {
-            _isNegative = true
-            var i = str.index(str.startIndex, offsetBy: 1)
-            while i < str.endIndex
-            {
-                _integer.append(Int32(String(str[i]))!)
-                i = str.index(after: i)
-            }
-        }
-        else
-        {
-            _isNegative = false
-            var i = str.startIndex
-            while i < str.endIndex
-            {
-                _integer.append(Int32(String(str[i]))!)
-                i = str.index(after: i)
-            }
-        }
-    }
-    
-    public init(_ val: Double)
-    {
-        _integer = [Int32]()
-        let str = String(Int(val))
-        
-        if str[str.startIndex] == "-"
-        {
-            _isNegative = true
-            var i = str.startIndex
-            while i < str.endIndex
-            {
-                _integer.append(Int32(String(str[i]))!)
-                i = str.index(after: i)
-            }
-        }
-        else
-        {
-            _isNegative = false
-            var i = str.startIndex
-            while i < str.endIndex
-            {
-                _integer.append(Int32(String(str[i]))!)
-                i = str.index(after: i)
-            }
-        }
-    }
-    
-    public init(_ val: String)
-    {
+        let input = String(describing: val)
         _integer = [Int32]()
         
         _isNegative = false
-        var i = val.startIndex
-        while i < val.endIndex
+        var i = input.startIndex
+        while i < input.endIndex
         {
-            switch val[i]
+            switch input[i]
             {
             case "-":
-                if i == val.startIndex
+                if i == input.startIndex
                 {
                     _isNegative = true
                 }
@@ -135,34 +82,34 @@ public class Long
                     exit(-1)
                 }
             case ".":
-                break
+                return
             case ",":
                 continue
             case "0":
-                _integer.append(Int32(String(val[i]))!)
+                _integer.append(Int32(String(input[i]))!)
             case "1":
-                _integer.append(Int32(String(val[i]))!)
+                _integer.append(Int32(String(input[i]))!)
             case "2":
-                _integer.append(Int32(String(val[i]))!)
+                _integer.append(Int32(String(input[i]))!)
             case "3":
-                _integer.append(Int32(String(val[i]))!)
+                _integer.append(Int32(String(input[i]))!)
             case "4":
-                _integer.append(Int32(String(val[i]))!)
+                _integer.append(Int32(String(input[i]))!)
             case "5":
-                _integer.append(Int32(String(val[i]))!)
+                _integer.append(Int32(String(input[i]))!)
             case "6":
-                _integer.append(Int32(String(val[i]))!)
+                _integer.append(Int32(String(input[i]))!)
             case "7":
-                _integer.append(Int32(String(val[i]))!)
+                _integer.append(Int32(String(input[i]))!)
             case "8":
-                _integer.append(Int32(String(val[i]))!)
+                _integer.append(Int32(String(input[i]))!)
             case "9":
-                _integer.append(Int32(String(val[i]))!)
+                _integer.append(Int32(String(input[i]))!)
             default:
                 print("invalid character")
                 exit(-1)
             }
-            i = val.index(after: i)
+            i = input.index(after: i)
         }
     }
     
