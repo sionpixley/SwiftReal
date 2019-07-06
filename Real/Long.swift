@@ -52,6 +52,11 @@ public class Long
          "43" : "60415263063373835637355132068513997507264512000000000",
          "44" : "2658271574788448768043625811014615890319638528000000000",
          "45" : "119622220865480194561963161495657715064383733760000000000"]
+    private enum ErrorCode: Int
+    {
+        case InitError = 0
+        case NegativeFactorial = 1
+    }
     
     public init()
     {
@@ -78,7 +83,7 @@ public class Long
                 }
                 else
                 {
-                    print("invalid character")
+                    print("Long \(ErrorCode.InitError) \(ErrorCode.InitError.rawValue).")
                     exit(-1)
                 }
             case ".":
@@ -106,7 +111,7 @@ public class Long
             case "9":
                 _integer.append(Int32(String(input[i]))!)
             default:
-                print("invalid character")
+                print("Long \(ErrorCode.InitError) \(ErrorCode.InitError.rawValue).")
                 exit(-1)
             }
             i = input.index(after: i)
@@ -748,7 +753,7 @@ public class Long
     {
         if val._isNegative
         {
-            print("invalid factorial")
+            print("Long \(ErrorCode.NegativeFactorial) \(ErrorCode.NegativeFactorial.rawValue).")
             exit(-1)
         }
         
