@@ -52,7 +52,7 @@ public class Long
          "43" : "60415263063373835637355132068513997507264512000000000",
          "44" : "2658271574788448768043625811014615890319638528000000000",
          "45" : "119622220865480194561963161495657715064383733760000000000"]
-    private enum ErrorCode: Int
+    private enum _ErrorCode: Int
     {
         case InitError = 0
         case NegativeFactorial = 1
@@ -83,7 +83,7 @@ public class Long
                 }
                 else
                 {
-                    print("Long \(ErrorCode.InitError) \(ErrorCode.InitError.rawValue).")
+                    print("Long \(_ErrorCode.InitError) \(_ErrorCode.InitError.rawValue).")
                     exit(-1)
                 }
             case ".":
@@ -111,7 +111,7 @@ public class Long
             case "9":
                 _integer.append(Int32(String(input[i]))!)
             default:
-                print("Long \(ErrorCode.InitError) \(ErrorCode.InitError.rawValue).")
+                print("Long \(_ErrorCode.InitError) \(_ErrorCode.InitError.rawValue).")
                 exit(-1)
             }
             i = input.index(after: i)
@@ -152,83 +152,82 @@ public class Long
         else
         {
             let result = Long()
-            if lhs.count == rhs.count
+            var lhsArray: [Int32] = lhs._integer
+            var rhsArray: [Int32] = rhs._integer
+            if lhsArray.count == rhsArray.count
             {
-                let size: Int = lhs.count
-                for i in stride(from: size-1, through: 0, by: -1)
+                for i in stride(from: lhsArray.count-1, through: 0, by: -1)
                 {
-                    if lhs[i] + rhs[i] >= 10
+                    if lhsArray[i] + rhsArray[i] >= 10
                     {
                         if i == 0
                         {
-                            result.append((lhs[i] + rhs[i]) % 10)
-                            result.append((lhs[i] + rhs[i]) / 10)
+                            result.append((lhsArray[i] + rhsArray[i]) % 10)
+                            result.append((lhsArray[i] + rhsArray[i]) / 10)
                         }
                         else
                         {
-                            result.append((lhs[i] + rhs[i]) % 10)
-                            lhs[i-1] += ((lhs[i] + rhs[i]) / 10)
+                            result.append((lhsArray[i] + rhsArray[i]) % 10)
+                            lhsArray[i-1] += ((lhsArray[i] + rhsArray[i]) / 10)
                         }
                     }
                     else
                     {
-                        result.append(lhs[i] + rhs[i])
+                        result.append(lhsArray[i] + rhsArray[i])
                     }
                 }
             }
             else
             {
-                if lhs.count > rhs.count
+                if lhsArray.count > rhsArray.count
                 {
-                    let size: Int = lhs.count
-                    rhs.addLeadingZeros(toWidth: size)
-                    for i in stride(from: size-1, through: 0, by: -1)
+                    rhsArray.addLeadingZeros(toWidth: lhsArray.count)
+                    for i in stride(from: lhsArray.count-1, through: 0, by: -1)
                     {
-                        if lhs[i] + rhs[i] >= 10
+                        if lhsArray[i] + rhsArray[i] >= 10
                         {
                             if i == 0
                             {
-                                result.append((lhs[i] + rhs[i]) % 10)
-                                result.append((lhs[i] + rhs[i]) / 10)
+                                result.append((lhsArray[i] + rhsArray[i]) % 10)
+                                result.append((lhsArray[i] + rhsArray[i]) / 10)
                             }
                             else
                             {
-                                result.append((lhs[i] + rhs[i]) % 10)
-                                lhs[i-1] += ((lhs[i] + rhs[i]) / 10)
+                                result.append((lhsArray[i] + rhsArray[i]) % 10)
+                                lhsArray[i-1] += ((lhsArray[i] + rhsArray[i]) / 10)
                             }
                         }
                         else
                         {
-                            result.append(lhs[i] + rhs[i])
+                            result.append(lhsArray[i] + rhsArray[i])
                         }
                     }
-                    rhs.removeLeadingZeros()
+                    //rhs.removeLeadingZeros()
                 }
                 else
                 {
-                    let size: Int = rhs.count
-                    lhs.addLeadingZeros(toWidth: size)
-                    for i in stride(from: size-1, through: 0, by: -1)
+                    lhsArray.addLeadingZeros(toWidth: rhs.count)
+                    for i in stride(from: rhsArray.count-1, through: 0, by: -1)
                     {
-                        if lhs[i] + rhs[i] >= 10
+                        if lhsArray[i] + rhsArray[i] >= 10
                         {
                             if i == 0
                             {
-                                result.append((lhs[i] + rhs[i]) % 10)
-                                result.append((lhs[i] + rhs[i]) / 10)
+                                result.append((lhsArray[i] + rhsArray[i]) % 10)
+                                result.append((lhsArray[i] + rhsArray[i]) / 10)
                             }
                             else
                             {
-                                result.append((lhs[i] + rhs[i]) % 10)
-                                lhs[i-1] += ((lhs[i] + rhs[i]) / 10)
+                                result.append((lhsArray[i] + rhsArray[i]) % 10)
+                                lhsArray[i-1] += ((lhsArray[i] + rhsArray[i]) / 10)
                             }
                         }
                         else
                         {
-                            result.append(lhs[i] + rhs[i])
+                            result.append(lhsArray[i] + rhsArray[i])
                         }
                     }
-                    lhs.removeLeadingZeros()
+                    //lhs.removeLeadingZeros()
                 }
             }
             
@@ -272,63 +271,62 @@ public class Long
         else
         {
             var result = Long()
-            if lhs.count == rhs.count
+            var lhsArray: [Int32] = lhs._integer
+            var rhsArray: [Int32] = rhs._integer
+            if lhsArray.count == rhsArray.count
             {
-                let size: Int = lhs.count
-                
-                for i in 0..<size
+                for i in 0..<lhsArray.count
                 {
-                    if rhs[i] > lhs[i]
+                    if rhsArray[i] > lhsArray[i]
                     {
                         result = rhs - lhs
                         result._isNegative = true
                         return result
                     }
-                    else if lhs[i] > rhs[i]
+                    else if lhsArray[i] > rhsArray[i]
                     {
                         break
                     }
                 }
                 
-                for i in stride(from: size-1, through: 0, by: -1)
+                for i in stride(from: lhsArray.count-1, through: 0, by: -1)
                 {
-                    if lhs[i] - rhs[i] < 0
+                    if lhsArray[i] - rhsArray[i] < 0
                     {
-                        result.append((lhs[i] + 10) - rhs[i])
-                        lhs[i-1] = lhs[i-1] - 1
+                        result.append((lhsArray[i] + 10) - rhsArray[i])
+                        lhsArray[i-1] = lhsArray[i-1] - 1
                     }
                     else
                     {
-                        result.append(lhs[i] - rhs[i])
+                        result.append(lhsArray[i] - rhsArray[i])
                     }
                 }
             }
             else
             {
-                if lhs.count > rhs.count
+                if lhsArray.count > rhsArray.count
                 {
-                    let size: Int = lhs.count
-                    rhs.addLeadingZeros(toWidth: size)
-                    for i in stride(from: size-1, through: 0, by: -1)
+                    rhsArray.addLeadingZeros(toWidth: lhs.count)
+                    for i in stride(from: lhsArray.count-1, through: 0, by: -1)
                     {
-                        if lhs[i] - rhs[i] < 0
+                        if lhsArray[i] - rhsArray[i] < 0
                         {
-                            result.append((lhs[i] + 10) - rhs[i])
-                            lhs[i-1] = lhs[i-1] - 1
+                            result.append((lhsArray[i] + 10) - rhsArray[i])
+                            lhsArray[i-1] = lhsArray[i-1] - 1
                         }
                         else
                         {
-                            result.append(lhs[i] - rhs[i])
+                            result.append(lhsArray[i] - rhsArray[i])
                         }
                     }
-                    rhs.removeLeadingZeros()
+                    //rhs.removeLeadingZeros()
                 }
                 else
                 {
-                    lhs.addLeadingZeros(toWidth: rhs.count)
+                    //lhs.addLeadingZeros(toWidth: rhs.count)
                     result = rhs - lhs
                     result._isNegative = true
-                    lhs.removeLeadingZeros()
+                    //lhs.removeLeadingZeros()
                     return result
                 }
             }
@@ -541,51 +539,13 @@ public class Long
     
     public static func >=(_ lhs: Long, _ rhs: Long) -> Bool
     {
-        if lhs.count > rhs.count
+        if (lhs > rhs) || (lhs == rhs)
         {
-            return true
-        }
-        else if rhs.count > lhs.count
-        {
-            return false
-        }
-        else if lhs._isNegative && !rhs._isNegative
-        {
-            return false
-        }
-        else if !lhs._isNegative && rhs._isNegative
-        {
-            return true
-        }
-        else if lhs._isNegative && rhs._isNegative
-        {
-            for i in 0..<lhs.count
-            {
-                if lhs[i] > rhs[i]
-                {
-                    return false
-                }
-                else if rhs[i] > lhs[i]
-                {
-                    return true
-                }
-            }
             return true
         }
         else
         {
-            for i in 0..<lhs.count
-            {
-                if lhs[i] > rhs[i]
-                {
-                    return true
-                }
-                else if rhs[i] > lhs[i]
-                {
-                    return false
-                }
-            }
-            return true
+            return false
         }
     }
     
@@ -641,51 +601,13 @@ public class Long
     
     public static func <=(_ lhs: Long, _ rhs: Long) -> Bool
     {
-        if lhs.count > rhs.count
+        if (lhs < rhs) || (lhs == rhs)
         {
-            return false
-        }
-        else if rhs.count > lhs.count
-        {
-            return true
-        }
-        else if lhs._isNegative && !rhs._isNegative
-        {
-            return true
-        }
-        else if !lhs._isNegative && rhs._isNegative
-        {
-            return false
-        }
-        else if lhs._isNegative && rhs._isNegative
-        {
-            for i in 0..<lhs.count
-            {
-                if lhs[i] > rhs[i]
-                {
-                    return true
-                }
-                else if rhs[i] > lhs[i]
-                {
-                    return false
-                }
-            }
             return true
         }
         else
         {
-            for i in 0..<lhs.count
-            {
-                if lhs[i] > rhs[i]
-                {
-                    return false
-                }
-                else if rhs[i] > lhs[i]
-                {
-                    return true
-                }
-            }
-            return true
+            return false
         }
     }
     
@@ -753,7 +675,7 @@ public class Long
     {
         if val._isNegative
         {
-            print("Long \(ErrorCode.NegativeFactorial) \(ErrorCode.NegativeFactorial.rawValue).")
+            print("Long \(_ErrorCode.NegativeFactorial) \(_ErrorCode.NegativeFactorial.rawValue).")
             exit(-1)
         }
         
