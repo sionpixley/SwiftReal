@@ -346,7 +346,7 @@ public class Long
     
     public static prefix func -(_ original: Long) -> Long
     {
-        let ret: Long = original
+        let ret = Long(original.toString)
         
         if original._isNegative
         {
@@ -638,23 +638,7 @@ public class Long
         _integer.removeLeadingZeros()
     }
     
-    public func maxBetween(firstNum: Long, secondNum: Long) -> Long
-    {
-        if firstNum == secondNum
-        {
-            return Long()
-        }
-        else if firstNum > secondNum
-        {
-            return firstNum
-        }
-        else
-        {
-            return secondNum
-        }
-    }
-    
-    public func pow(base: Long, exponent: UInt) -> Long
+    public func pow(exponent: UInt) -> Long
     {
         if exponent == 0
         {
@@ -662,30 +646,30 @@ public class Long
         }
         else
         {
-            var ret = Long(base.toString)
+            var ret = Long(self.toString)
             for _ in 1..<exponent
             {
-                ret *= base
+                ret *= self
             }
             return ret
         }
     }
     
-    public func factorial(of val: Long) -> Long
+    public var factorial: Long
     {
-        if val._isNegative
+        if self._isNegative
         {
             print("Long \(_ErrorCode.NegativeFactorial) \(_ErrorCode.NegativeFactorial.rawValue).")
             exit(-1)
         }
         
-        if val <= Long(45)
+        if self <= Long(45)
         {
-            return Long(_factorialMap[val.toString]!)
+            return Long(_factorialMap[self.toString]!)
         }
         else
         {
-            var result = Long(val.toString)
+            var result = Long(self.toString)
             var current = Long(result.toString) - Long(1)
             while current > Long(45)
             {
@@ -698,15 +682,17 @@ public class Long
         }
     }
     
-    public func abs(of val: Long) -> Long
+    public var abs: Long
     {
-        if !val._isNegative
+        let ret = Long(self.toString)
+        
+        if self._isNegative
         {
-            return val
+            return -ret
         }
         else
         {
-            return -val
+            return ret
         }
     }
     

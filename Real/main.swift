@@ -1,4 +1,4 @@
-func LongAdditionOperatorWithLargeNumbers_LongLong_Long() -> Bool
+/*func LongAdditionOperatorWithLargeNumbers_LongLong_Long() -> Bool
 {
     // arrange
     let num1 = Long("74398479082349012869845798027349858192036512398749802134")
@@ -677,58 +677,6 @@ func LongEqualToOperatorWithZeroAndSmallNumber_LongLong_Bool() -> Bool
     return !actual
 }
 
-func LongMaxBetweenWithLargeNumbers_LongLong_Long() -> Bool
-{
-    // arrange
-    let num1 = Long("73248598243")
-    let num2 = Long("842461254")
-    
-    // act
-    let actual: Long = num1.maxBetween(firstNum: num1, secondNum: num2)
-    
-    // assert
-    return actual == num1
-}
-
-func LongMaxBetweenWithSmallNumbers_LongLong_Long() -> Bool
-{
-    // arrange
-    let num1 = Long(56)
-    let num2 = Long(78)
-    
-    // act
-    let actual: Long = num1.maxBetween(firstNum: num1, secondNum: num2)
-    
-    // assert
-    return actual == num2
-}
-
-func LongMaxBetweenWithZeros_LongLong_Long() -> Bool
-{
-    // arrange
-    let num1 = Long()
-    let num2 = Long()
-    
-    // act
-    let actual: Long = num1.maxBetween(firstNum: num1, secondNum: num2)
-    
-    // assert
-    return actual == num1
-}
-
-func LongMaxBetweenWithZeroAndSmallNumber_LongLong_Long() -> Bool
-{
-    // arrange
-    let num1 = Long()
-    let num2 = Long(12)
-    
-    // act
-    let actual: Long = num1.maxBetween(firstNum: num1, secondNum: num2)
-    
-    // assert
-    return actual == num2
-}
-
 func LongAddAssignWithLargeNumbers_LongLong_Long() -> Bool
 {
     // arrange
@@ -892,7 +840,7 @@ func LongPowerWithLargeNumber_LongInt_Long() -> Bool
     let num2: UInt = 5
     
     // act
-    let actual = Long().pow(base: num1, exponent: num2)
+    let actual = num1.pow(exponent: num2)
     
     // assert
     return actual == Long("1960511603350444742988276943299794921875")
@@ -905,7 +853,7 @@ func LongPowerWithSmallNumber_LongInt_Long() -> Bool
     let num2: UInt = 4
     
     // act
-    let actual = Long().pow(base: num1, exponent: num2)
+    let actual = num1.pow(exponent: num2)
     
     // assert
     return actual == Long(20736)
@@ -918,7 +866,7 @@ func LongPowerWithNegativeNumber_LongInt_Long() -> Bool
     let num2: UInt = 7
     
     // act
-    let actual = Long().pow(base: num1, exponent: num2)
+    let actual = num1.pow(exponent: num2)
     
     // assert
     return actual == Long("-34359738368")
@@ -931,7 +879,7 @@ func LongPowerWithZeroExponent_LongInt_Long() -> Bool
     let num2: UInt = 0
     
     // act
-    let actual = Long().pow(base: num1, exponent: num2)
+    let actual = num1.pow(exponent: num2)
     
     // assert
     return actual == Long(1)
@@ -943,7 +891,7 @@ func LongFactorialOperatorWithSmallNumber_Long_Long() -> Bool
     let num = Long(6)
     
     // act
-    let actual = Long().factorial(of: num)
+    let actual = num.factorial
     
     // assert
     return actual == Long(720)
@@ -990,10 +938,6 @@ print(LongEqualToOperatorWithLargeNumbers_LongLong_Bool())
 print(LongEqualToOperatorWithSmallNumbers_LongLong_Bool())
 print(LongEqualToOperatorWithZeros_LongLong_Bool())
 print(LongEqualToOperatorWithZeroAndSmallNumber_LongLong_Bool())
-print(LongMaxBetweenWithLargeNumbers_LongLong_Long())
-print(LongMaxBetweenWithSmallNumbers_LongLong_Long())
-print(LongMaxBetweenWithZeros_LongLong_Long())
-print(LongMaxBetweenWithZeroAndSmallNumber_LongLong_Long())
 print(LongAddAssignWithLargeNumbers_LongLong_Long())
 print(LongAddAssignWithSmallNumbers_LongLong_Long())
 print(LongAddAssignWithZeros_LongLong_Long())
@@ -1010,4 +954,10 @@ print(LongPowerWithLargeNumber_LongInt_Long())
 print(LongPowerWithSmallNumber_LongInt_Long())
 print(LongPowerWithNegativeNumber_LongInt_Long())
 print(LongPowerWithZeroExponent_LongInt_Long())
-print(LongFactorialOperatorWithSmallNumber_Long_Long())
+print(LongFactorialOperatorWithSmallNumber_Long_Long())*/
+
+let num = Long(100000)
+let result = num.factorial
+print(result.toString)
+print()
+print(result.count)
