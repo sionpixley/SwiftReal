@@ -1,4 +1,4 @@
-# THIS REPO IS ARCHIVED UNTIL I CAN FIND ENOUGH TIME TO CONTINUE WORK ON IT
+# THIS REPO WILL NOT BE UPDATED UNTIL I CAN FIND ENOUGH TIME TO CONTINUE WORK ON IT
 # SwiftReal
 Attempting to make a Swift library that can represent infinitely-long numbers (both integers and real numbers) with no loss in accuracy.
 
